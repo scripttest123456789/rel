@@ -1,0 +1,30 @@
+---
+
+- hosts: docker-node
+  become: true
+
+tasks:
+#### creating directory for docker files and adding docker files
+  - name: Create a build directory
+    file:
+      path: /root/dockerfiles
+      state: directory
+      owner: root
+      group: root
+      mode: '0755'
+  - name: copy dockerfiel
+    copy:
+      src:  $path to dockerfile
+      dest: /root/dockerfiles/$dockerfile
+      owner: root
+      group: root
+      mode: '0644'
+  - name: building container
+    docker_image:
+      name: relexcontainer:v1.0
+      build:
+        path: $path to docker file
+        source: build
+      state: present
+
+
